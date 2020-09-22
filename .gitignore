@@ -1,3 +1,4 @@
 target/
 .idea/
 load-test.iml
+.DS_Store
