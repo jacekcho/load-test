@@ -8,8 +8,8 @@ import scala.concurrent.duration._
 
 class DemoSimulation extends Simulation {
 
-  private val ramps = PropertyReader.getProperty("ramps", 2)
-  private val users = PropertyReader.getProperty("users", 8)
+  private val ramps = PropertyReader.getProperty("ramps", 3)
+  private val users = PropertyReader.getProperty("users", 9)
   private val paceDurationMinutes = PropertyReader.getProperty("pace_duration", 2)
   private val rampDurationMinutes = PropertyReader.getProperty("ramp_duration", 1)
   private val usersPerRamp = users / ramps
@@ -25,11 +25,11 @@ class DemoSimulation extends Simulation {
   setUp(
     firstTestScenario
       .inject(
-        rampUsers(usersPerRamp) during (rampDurationMinutes minutes),
-        nothingFor(paceDurationMinutes minutes),
-
-        rampUsers(usersPerRamp) during (rampDurationMinutes minutes),
-        nothingFor(paceDurationMinutes minutes)
+        (1 to ramps).flatMap
+        (i => Seq(
+          rampUsers(usersPerRamp) during (rampDurationMinutes minutes),
+          nothingFor(paceDurationMinutes minutes)
+        ))
       )
   ).maxDuration(maxDuration minutes)
 

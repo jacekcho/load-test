@@ -31,7 +31,7 @@ object FirstScenario {
           )
             .pause(1)
         }
-        .repeat(3) {
+        .repeat(2) {
           feed(computerIdFeeder)
             .exec(
               http("second request description")
