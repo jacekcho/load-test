@@ -5,7 +5,7 @@ import io.gatling.http.Predef._
 
 object FirstScenario {
 
-  val computerIDfeeder = csv("computerId.csv").random
+  val computerIdFeeder = csv("computerId.csv").random
 
   val headers = Map(
     "Accept" -> "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -32,7 +32,7 @@ object FirstScenario {
             .pause(1)
         }
         .repeat(3) {
-          feed(computerIDfeeder)
+          feed(computerIdFeeder)
             .exec(
               http("second request description")
                 .get(protocol + homeUrl + "/computers/${id}")
