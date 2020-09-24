@@ -1,7 +1,7 @@
 load-test
 =========================
 
-Project requires: 
+Prerequisites: 
 - java 1.8
 - Scala 1.12
 
